@@ -10,15 +10,15 @@ resource "aws_instance" "bastionhost" {
   vpc_security_group_ids      = [aws_security_group.bastionhost.id]
   key_name                    = var.pub_key
 
-  user_data = <<-EOF
-              #!/bin/bash
-              echo "${local.priv_key}" >> /home/ubuntu/.ssh/id_rsa
-              chown ubuntu /home/ubuntu/.ssh/id_rsa
-              chgrp ubuntu /home/ubuntu/.ssh/id_rsa
-              chmod 600 /home/ubuntu/.ssh/id_rsa
-              apt-get update -y
-              apt-get install ansible -y 
-              EOF
+  # user_data = <<-EOF
+  #             #!/bin/bash
+  #             echo "${local.priv_key}" >> /home/ubuntu/.ssh/id_rsa
+  #             chown ubuntu /home/ubuntu/.ssh/id_rsa
+  #             chgrp ubuntu /home/ubuntu/.ssh/id_rsa
+  #             chmod 600 /home/ubuntu/.ssh/id_rsa
+  #             apt-get update -y
+  #             apt-get install ansible -y 
+  #             EOF
 
   tags = {
     Name        = "bastionhost-${var.name}"
