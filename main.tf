@@ -217,10 +217,10 @@ resource "aws_elb" "web-elb" {
 
 # DNS
 
-data "aws_route53_zone" "selected" {
-  name         = "${var.dns_domain}."
-  private_zone = false
-}
+#data "aws_route53_zone" "selected" {
+#  name         = "${var.dns_domain}."
+#  private_zone = false
+#}
 
 resource "aws_route53_record" "bastionhost" {
   provider = aws.dns
@@ -235,7 +235,8 @@ resource "aws_route53_record" "bastionhost" {
 
 resource "aws_route53_record" "elb" {
   provider = aws.dns
-  zone_id = data.aws_route53_zone.selected.zone_id
+  #zone_id = data.aws_route53_zone.selected.zone_id
+  zone_id = "ZXFKQJPL5X4WQ"
 #  name    = "${var.name}.data.aws_route53_zone.selected.name"
   name    = var.name
   type    = "CNAME"
