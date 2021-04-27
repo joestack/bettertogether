@@ -217,14 +217,9 @@ resource "aws_elb" "web-elb" {
 
 # DNS
 
-#data "aws_route53_zone" "selected" {
-#  name         = "${var.dns_domain}."
-#  private_zone = false
-#}
-
 resource "aws_route53_record" "bastionhost" {
   provider = aws.dns
-  zone_id = "ZXFKQJPL5X4WQ"
+  zone_id = var.dns_id
   name    = lookup(aws_instance.bastionhost.*.tags[0], "Name")
   #name    = "bastionhost"
   type    = "A"
@@ -235,8 +230,7 @@ resource "aws_route53_record" "bastionhost" {
 
 resource "aws_route53_record" "elb" {
   provider = aws.dns
-  #zone_id = data.aws_route53_zone.selected.zone_id
-  zone_id = "ZXFKQJPL5X4WQ"
+  zone_id = var.dns_id
 #  name    = "${var.name}.data.aws_route53_zone.selected.name"
   name    = var.name
   type    = "CNAME"
