@@ -12,6 +12,10 @@ variable "web_node_count" {
   default     = "3"
 }
 
+variable "dns_id" {
+  description = "ID of aws dns zone"
+}
+
 variable "instance_type" {
   description = "instance size to be used for worker nodes"
   default     = "t2.small"
