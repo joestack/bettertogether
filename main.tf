@@ -3,18 +3,20 @@ terraform {
 }
 
 provider "aws" {
-    alias = "default"
+    assume_role {
+      role_arn = "arn:aws:iam::022053680926:role/bettertogether"
+    }
     region = var.aws_region
-    version = "=2.55.0"
+    version = "=3.37.0"
 }
 
-provider "aws" {
-  alias = "route53_account"
-  region = var.aws_region
-  assume_role {
-    role_arn = "arn:aws:iam::022053680926:role/bettertogether"
-  }
-}
+#provider "aws" {
+#  alias = "route53_account"
+#  region = var.aws_region
+#  assume_role {
+#    role_arn = "arn:aws:iam::022053680926:role/bettertogether"
+#  }
+#}
 
 data "aws_availability_zones" "available" {}
 
