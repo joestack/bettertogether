@@ -226,9 +226,9 @@ data "aws_route53_zone" "selected" {
 }
 
 resource "aws_route53_record" "bastionhost" {
-  providers = {
-    aws = aws.route53_account
-  }
+  # providers = {
+  #   aws = aws.route53_account
+  # }
   zone_id = data.aws_route53_zone.selected.zone_id
   name    = lookup(aws_instance.bastionhost.*.tags[0], "Name")
   #name    = "bastionhost"
@@ -239,9 +239,9 @@ resource "aws_route53_record" "bastionhost" {
 
 
 resource "aws_route53_record" "elb" {
-  providers = {
-    aws = aws.route53_account
-  }
+  # providers = {
+  #   aws = aws.route53_account
+  # }
   zone_id = data.aws_route53_zone.selected.zone_id
 #  name    = "${var.name}.data.aws_route53_zone.selected.name"
   name    = var.name
