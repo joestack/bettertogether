@@ -3,6 +3,13 @@ terraform {
 }
 
 provider "aws" {
+    alias = "default"
+    region = var.aws_region
+    version = "=3.37.0"
+}
+
+provider "aws" {
+    alias = "route53_account"
     assume_role {
       role_arn = "arn:aws:iam::022053680926:role/bettertogether"
     }
@@ -10,16 +17,7 @@ provider "aws" {
     version = "=3.37.0"
 }
 
-#provider "aws" {
-#  alias = "route53_account"
-#  region = var.aws_region
-#  assume_role {
-#    role_arn = "arn:aws:iam::022053680926:role/bettertogether"
-#  }
-#}
-
 data "aws_availability_zones" "available" {}
-
 
 data "aws_ami" "centos" {
 owners      = ["679593333241"]
@@ -226,9 +224,9 @@ data "aws_route53_zone" "selected" {
 }
 
 resource "aws_route53_record" "bastionhost" {
-  # providers = {
-  #   aws = aws.route53_account
-  # }
+  providers = {
+    aws = aws.route53_account
+  }
   zone_id = data.aws_route53_zone.selected.zone_id
   name    = lookup(aws_instance.bastionhost.*.tags[0], "Name")
   #name    = "bastionhost"
@@ -239,9 +237,9 @@ resource "aws_route53_record" "bastionhost" {
 
 
 resource "aws_route53_record" "elb" {
-  # providers = {
-  #   aws = aws.route53_account
-  # }
+  providers = {
+    aws = aws.route53_account
+  }
   zone_id = data.aws_route53_zone.selected.zone_id
 #  name    = "${var.name}.data.aws_route53_zone.selected.name"
   name    = var.name
