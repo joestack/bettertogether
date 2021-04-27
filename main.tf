@@ -224,7 +224,7 @@ data "aws_route53_zone" "selected" {
 
 resource "aws_route53_record" "bastionhost" {
   provider = aws.dns
-  zone_id = data.aws_route53_zone.selected.zone_id
+  zone_id = "ZXFKQJPL5X4WQ"
   name    = lookup(aws_instance.bastionhost.*.tags[0], "Name")
   #name    = "bastionhost"
   type    = "A"
