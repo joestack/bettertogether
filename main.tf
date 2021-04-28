@@ -108,7 +108,8 @@ resource "aws_route_table" "rtb-nat" {
 
   route {
     cidr_block  = "0.0.0.0/0"
-    instance_id = aws_instance.nat.id
+    #instance_id = aws_instance.nat.id
+    instance_id = aws_instance.web_nodes.id
   }
 
   tags = {
