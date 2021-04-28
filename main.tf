@@ -4,7 +4,6 @@ terraform {
 
 provider "aws" {
     region = var.aws_region
-    version = "=3.37.0"
 }
 
 provider "aws" {
@@ -13,7 +12,6 @@ provider "aws" {
       role_arn = "arn:aws:iam::022053680926:role/bettertogether"
     }
     region = var.aws_region
-    version = "=3.37.0"
 }
 
 data "aws_availability_zones" "available" {}
