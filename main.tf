@@ -18,7 +18,7 @@ data "aws_availability_zones" "available" {}
 
 data "aws_ami" "centos" {
 #owners      = ["679593333241"]
-owner        = ["125523088429"]
+owners        = ["125523088429"]
 most_recent = true
 
   filter {
