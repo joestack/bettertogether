@@ -103,19 +103,18 @@ resource "aws_route_table" "rtb" {
 
 # nat route table
 
-resource "aws_route_table" "rtb-nat" {
-  vpc_id = aws_vpc.hashicorp_vpc.id
+# resource "aws_route_table" "rtb-nat" {
+#   vpc_id = aws_vpc.hashicorp_vpc.id
 
-  route {
-    cidr_block  = "0.0.0.0/0"
-    #instance_id = aws_instance.nat.id
-    instance_id = aws_instance.web_nodes.*.id
-  }
+#   route {
+#     cidr_block  = "0.0.0.0/0"
+#     instance_id = aws_instance.nat.id
+#   }
 
-  tags = {
-    Name        = "${var.name}-nat_instance"
-  }
-}
+#   tags = {
+#     Name        = "${var.name}-nat_instance"
+#   }
+# }
 
 # public subnet to IGW
 
@@ -136,7 +135,9 @@ resource "aws_route_table_association" "pub_web-subnet" {
 resource "aws_route_table_association" "rtb-web" {
   count          = var.web_subnet_count
   subnet_id      = element(aws_subnet.web_subnet.*.id, count.index)
-  route_table_id = aws_route_table.rtb-nat.id
+  #route_table_id = aws_route_table.rtb-nat.id
+  route_table_id = aws_route_table.rtb.id
+
 }
 
 # subnet public
