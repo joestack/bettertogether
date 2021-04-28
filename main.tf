@@ -350,7 +350,7 @@ resource "aws_security_group" "nat" {
   vpc_id      = aws_vpc.hashicorp_vpc.id
 }
 
-resource "aws_security_group_rule" "nat-http" {
+resource "aws_security_group_rule" "nat-ssh" {
   security_group_id = aws_security_group.nat.id
   type              = "ingress"
   from_port         = 22
