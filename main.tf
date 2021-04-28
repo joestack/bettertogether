@@ -169,8 +169,8 @@ resource "aws_subnet" "web_subnet" {
   count                   = var.web_subnet_count
   cidr_block              = cidrsubnet(var.network_address_space, 8, count.index + 20)
   vpc_id                  = aws_vpc.hashicorp_vpc.id
-  map_public_ip_on_launch = "false"
-
+  #map_public_ip_on_launch = "false"
+  map_public_ip_on_launch = "true"
   availability_zone       = data.aws_availability_zones.available.names[count.index % local.mod_az]
 
   tags = {

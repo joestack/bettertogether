@@ -30,7 +30,7 @@ resource "aws_instance" "web_nodes" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.instance_type
   subnet_id                   = element(aws_subnet.web_subnet.*.id, count.index + 1)
-  associate_public_ip_address = "false"
+  associate_public_ip_address = "true"
   vpc_security_group_ids      = [aws_security_group.web.id]
   key_name                    = var.pub_key
 
