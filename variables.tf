@@ -28,7 +28,7 @@ variable "web_subnet_count" {
 
 variable "ssh_user" {
   description = "default ssh user to get access to an instance"
-  default     = "ubuntu"
+  default     = "centos"
 }
 
 variable "pub_key" {
@@ -48,6 +48,10 @@ variable "dns_domain" {
 variable "network_address_space" {
   description = "CIDR for this deployment"
   default     = "192.168.0.0/16"
+}
+
+variable "ami_id" {
+  default     = "ami-073a8e22592a4a925"
 }
 
 locals {

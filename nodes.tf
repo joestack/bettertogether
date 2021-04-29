@@ -3,6 +3,7 @@
 
 resource "aws_instance" "bastionhost" {
   ami                         = data.aws_ami.ubuntu.id
+  #ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.dmz_subnet.id
   private_ip                  = cidrhost(aws_subnet.dmz_subnet.cidr_block, 10)
@@ -27,7 +28,8 @@ resource "aws_instance" "bastionhost" {
 
 resource "aws_instance" "web_nodes" {
   count                       = var.web_node_count
-  ami                         = data.aws_ami.ubuntu.id
+  #ami                         = data.aws_ami.ubuntu.id
+  ami                         = var.ami_id
   instance_type               = var.instance_type
   subnet_id                   = element(aws_subnet.web_subnet.*.id, count.index + 1)
   associate_public_ip_address = "true"
