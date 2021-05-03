@@ -1,4 +1,4 @@
-# tfe-aws-bastion-ansible
+# Better Together Demo Environment
 The purpose of this repo is to dynamically create an Ansible inventory file based on Terraform (IaC).
 While Ansible is very good in doing its job in the realm of Configuration Management (CM),
 Terraform is the worlds most widely used Infrastructure as Code (IaC) provisioning tool.
