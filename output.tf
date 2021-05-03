@@ -18,6 +18,14 @@ output "Inventory_json" {
   value = jsonencode(data.template_file.ansible_skeleton.rendered)
 }
 
+output "web_node_ips" {
+  value = aws_instance.web_nodes.*.public_ip
+}
+
+output "web_node_ips_json" {
+  value = jsonencode(aws_instance.web_nodes.*.public_ip)
+}
+
 
 # output "ELB_AWS_internal_DNS" {
 #   value = aws_elb.web-elb.dns_name
