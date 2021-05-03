@@ -14,6 +14,11 @@ output "Inventory" {
   value = data.template_file.ansible_skeleton.rendered
 }
 
+output "Inventory_json" {
+  value = jsonencode(data.template_file.ansible_skeleton.rendered)
+}
+
+
 # output "ELB_AWS_internal_DNS" {
 #   value = aws_elb.web-elb.dns_name
 # }
