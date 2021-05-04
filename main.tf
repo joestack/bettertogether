@@ -217,15 +217,15 @@ resource "aws_elb" "web-elb" {
 
 # DNS
 
-resource "aws_route53_record" "bastionhost" {
-  provider = aws.dns
-  zone_id = var.dns_id
-  name    = lookup(aws_instance.bastionhost.*.tags[0], "Name")
-  #name    = "bastionhost"
-  type    = "A"
-  ttl     = "300"
-  records = [aws_instance.bastionhost.public_ip]
-}
+#resource "aws_route53_record" "bastionhost" {
+#  provider = aws.dns
+#  zone_id = var.dns_id
+#  name    = lookup(aws_instance.bastionhost.*.tags[0], "Name")
+#  #name    = "bastionhost"
+#  type    = "A"
+#  ttl     = "300"
+#  records = [aws_instance.bastionhost.public_ip]
+#}
 
 
 resource "aws_route53_record" "elb" {
