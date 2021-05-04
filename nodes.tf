@@ -1,15 +1,15 @@
 
 # INSTANCES
 
-resource "aws_instance" "bastionhost" {
-  ami                         = data.aws_ami.ubuntu.id
-  #ami                         = data.aws_ami.ubuntu.id
-  instance_type               = "t2.micro"
-  subnet_id                   = aws_subnet.dmz_subnet.id
-  private_ip                  = cidrhost(aws_subnet.dmz_subnet.cidr_block, 10)
-  associate_public_ip_address = "true"
-  vpc_security_group_ids      = [aws_security_group.bastionhost.id]
-  key_name                    = var.pub_key
+#resource "aws_instance" "bastionhost" {
+#  ami                         = data.aws_ami.ubuntu.id
+#  #ami                         = data.aws_ami.ubuntu.id
+#  instance_type               = "t2.micro"
+#  subnet_id                   = aws_subnet.dmz_subnet.id
+#  private_ip                  = cidrhost(aws_subnet.dmz_subnet.cidr_block, 10)
+#  associate_public_ip_address = "true"
+#  vpc_security_group_ids      = [aws_security_group.bastionhost.id]
+#  key_name                    = var.pub_key
 
   # user_data = <<-EOF
   #             #!/bin/bash
@@ -21,10 +21,10 @@ resource "aws_instance" "bastionhost" {
   #             apt-get install ansible -y 
   #             EOF
 
-  tags = {
-    Name        = "bastionhost-${var.name}"
-  }
-}
+#  tags = {
+#    Name        = "bastionhost-${var.name}"
+#  }
+#}
 
 resource "aws_instance" "web_nodes" {
   count                       = var.web_node_count
