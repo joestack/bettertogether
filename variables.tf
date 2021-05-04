@@ -47,7 +47,11 @@ variable "network_address_space" {
 }
 
 variable "ami_id" {
-  default     = "ami-073a8e22592a4a925"
+  description = "amazon machine image id"
+  # CentOS 8 Stream
+  # default     = "ami-073a8e22592a4a925" 
+  # CentOS 8
+  default     = "ami-0e337c7f9752d9d34"
 }
 
 locals {
