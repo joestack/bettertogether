@@ -196,10 +196,10 @@ resource "aws_instance" "nat" {
 
 # LOAD BALANCER #
 resource "aws_elb" "web-elb" {
-  name = "web-elb"
+  name = "web-elb-${var.name}"
 
   tags = {
-    Name        = "web-elb"
+    Name        = "web-elb-${var.name}"
   }
 
   subnets         = aws_subnet.pub_web_subnet.*.id
